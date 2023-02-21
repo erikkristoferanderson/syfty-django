@@ -56,8 +56,20 @@
     text-decoration: underline;
   }
   
-  .col-sm-10 {
+  /* .col-sm-10 {
     margin-top: 50px;
     margin-left: 400px; /* adjust this to match the width of your sidebar */
+  /*} */
+  
+
+  .row {
+    display: flex;
   }
   
+  .col-sm-2 {
+    flex: 0 0 200px; /* set the width of the sidebar */
+  }
+  
+  .col-sm-10 {
+    flex: 1; /* make the main content area fill the remaining space */
+  }
