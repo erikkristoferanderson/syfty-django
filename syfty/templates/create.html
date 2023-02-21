@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<form action="{% url 'create' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>
+            <h1>Create Search</h1>
+        </legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <label for="subreddit">Subreddit: </label>
+        <input id="subreddit" type="text" name="subreddit" value="">
+        <label for="search_term">Search Term: </label>
+        <input id="search_term" type="text" name="search_term" value="">
+        <input type="submit" value="OK">
+    </fieldset>
+</form>
+<p><a href="{% url 'index' %}">Back to Searches list</a></p>
+
+{% endblock %}

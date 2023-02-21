@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if searches %}
+<h1>Your Searches:</h1>
+<ul>
+    {% for search in searches %}
+    <li><a href="/{{ search.id }}/">{{ search.subreddit }} - {{ search.search_term }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No searches are available.</p>
+{% endif %}
+
+{% if searches|length < 3 %} <p><a href="create">Create Search</a></p>
+    {% else %}
+    <p>You've reached the limit of searches for now</p>
+    {% endif %}
+
+    {% endblock %}

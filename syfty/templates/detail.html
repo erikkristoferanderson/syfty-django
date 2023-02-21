@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Subreddit</th>
+            <th>Search Term</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>{{ search.subreddit }}</td>
+            <td>{{ search.search_term }}</td>
+            <td><a href="{% url 'update' search.pk %}">Edit</a></td>
+            <td>
+                <form action='delete' method='post'>
+                    {% csrf_token %}
+                    <button type='submit' name='delete' value='Delete'>Delete</button>
+                </form>
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+<p><a href="{% url 'index' %}">Back to Searches list</a></p>
+
+
+
+{% endblock %}
