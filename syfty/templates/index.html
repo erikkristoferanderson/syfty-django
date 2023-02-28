@@ -2,8 +2,8 @@
 
 {% block content %}
 
-{% if searches %}
 <h1>Your Searches:</h1>
+{% if searches %}
 <ul>
     {% for search in searches %}
     <li><a href="/{{ search.id }}/">{{ search.subreddit }} - {{ search.search_term }}</a></li>
