@@ -142,3 +142,23 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.zeptomail.com'
+EMAIL_PORT = '587'
+
+if DEVELOPMENT_MODE is True:
+    from . import email_env
+    EMAIL_HOST_PASSWORD = email_env.EMAIL_HOST_PASSWORD
+    EMAIL_HOST_USER = email_env.EMAIL_HOST_USER
+
+else:
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+# Set the default from email address
+DEFAULT_FROM_EMAIL = 'Hello from Syfty <hello@syfty.net>'
+
+# Set the server email address (used for error messages sent to site administrators)
+SERVER_EMAIL = 'hello+errors@syfty.net'
