@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'payments.apps.PaymentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -162,3 +164,14 @@ DEFAULT_FROM_EMAIL = 'Hello from Syfty <hello@syfty.net>'
 
 # Set the server email address (used for error messages sent to site administrators)
 SERVER_EMAIL = 'hello+errors@syfty.net'
+
+
+if DEVELOPMENT_MODE is True:
+    from . import stripe_env
+    STRIPE_PUBLISHABLE_KEY = stripe_env.STRIPE_PUBLISHABLE_KEY
+    STRIPE_SECRET_KEY = stripe_env.STRIPE_SECRET_KEY
+    STRIPE_ENDPOINT_SECRET = stripe_env.STRIPE_ENDPOINT_SECRET
+else:
+    STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+    STRIPE_ENDPOINT_SECRET = os.environ.get('STRIPE_ENDPOINT_SECRET')

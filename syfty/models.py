@@ -9,3 +9,8 @@ class Search(models.Model):
 
     def __str__(self):
         return self.subreddit + "," + self.search_term + ',' + str(self.owner.id)
+
+
+class Subscription(models.Model):
+    active = models.BooleanField(default=False)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
