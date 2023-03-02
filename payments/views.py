@@ -66,6 +66,7 @@ class CancelledView(TemplateView):
 
 @csrf_exempt
 def stripe_webhook(request):
+    logger = logging.getLogger()
     stripe.api_key = settings.STRIPE_SECRET_KEY
     endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
     payload = request.body
@@ -86,8 +87,11 @@ def stripe_webhook(request):
     # Handle the checkout.session.completed event
     if event['type'] == 'checkout.session.completed':
         print("Payment was successful.")
-        user_email = event['data']['customer_details']['email']
-        user = User.objects.filter(email=user_email)
-        Subscription(
-            active=True, owner=user.id)
+        logger.info("Payment was successful. , hello 8592738")
+        # user_email = event['data']['customer_details']['email']
+        # logger.info("user_email", user_email)
+        # user = User.objects.filter(email=user_email)
+        # sub = Subscription(
+        #     active=True, owner=user.id)
+        # sub.save()
     return HttpResponse(status=200)

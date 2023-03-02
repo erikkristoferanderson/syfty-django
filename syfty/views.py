@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignupForm
 from .models import Search
+import logging
 
 
 def index(request):
