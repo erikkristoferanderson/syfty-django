@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from syfty.models import Subscription
 from django.contrib.auth.models import User
-
+import logging
 
 import stripe
 
