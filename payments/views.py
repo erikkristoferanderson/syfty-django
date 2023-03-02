@@ -67,6 +67,7 @@ class CancelledView(TemplateView):
 @csrf_exempt
 def stripe_webhook(request):
     logger = logging.getLogger()
+    logger.info("handling stripe webhook, hello 858372958")
     stripe.api_key = settings.STRIPE_SECRET_KEY
     endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
     payload = request.body

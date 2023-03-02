@@ -9,6 +9,8 @@ import logging
 
 
 def index(request):
+    logger = logging.getLogger()
+    logger.info("Home page was loaded, hello 8592837")
     if not request.user.is_authenticated:
         return render(request, 'welcome.html')
     current_user = request.user

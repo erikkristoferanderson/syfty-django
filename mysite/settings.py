@@ -24,13 +24,11 @@ LOGGING = {
     'version': 1,
     # The version number of our log
     'disable_existing_loggers': False,
-    # django uses some of its own loggers for internal operations. In case you want to disable them just replace the False above with true.
-    # A handler for WARNING. It is basically writing the WARNING messages into a file called WARNING.log
     'handlers': {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'warning.log',
+            'filename': BASE_DIR / 'info.log',
         },
     },
     # A logger for WARNING which has a handler called 'file'. A logger can have multiple handler
