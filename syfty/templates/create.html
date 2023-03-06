@@ -6,7 +6,7 @@
     {% csrf_token %}
     <fieldset>
         <legend>
-            <h1>Create Search</h1>
+            <h1>Create Syft</h1>
         </legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
         <label for="subreddit">Subreddit: </label>
@@ -16,6 +16,6 @@
         <input type="submit" value="OK">
     </fieldset>
 </form>
-<p><a href="{% url 'index' %}">Back to Searches list</a></p>
+<p><a href="{% url 'index' %}">Back to Syfts list</a></p>
 
 {% endblock %}

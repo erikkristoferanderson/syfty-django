@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Search, Subscription
+from .models import Syft, Subscription
 
-admin.site.register(Search)
+admin.site.register(Syft)
 admin.site.register(Subscription)

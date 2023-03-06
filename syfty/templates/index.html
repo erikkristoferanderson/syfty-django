@@ -2,20 +2,50 @@
 
 {% block content %}
 
-<h1>Your Searches:</h1>
-{% if searches %}
-<ul>
-    {% for search in searches %}
-    <li><a href="/{{ search.id }}/">{{ search.subreddit }} - {{ search.search_term }}</a></li>
-    {% endfor %}
-</ul>
+<h1>Your Syfts:</h1>
+{% if syfts %}
+<table>
+    <thead>
+        <tr>
+            <th>Subreddit</th>
+            <th>Search Term</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+
+        {% for syft in syfts %}
+
+        <tr>
+            <td> {{ syft.subreddit }}</td>
+            <td>{{ syft.search_term }}</td>
+            <td><a href="{% url 'detail' syft.pk %}">View</a></td>
+            <td><a href="{% url 'update' syft.pk %}">Edit</a></td>
+            <td>
+                <form action="{% url 'delete' syft.pk %}" method='post'>
+                    {% csrf_token %}
+                    <button type='submit' name='delete' value='Delete'>Delete</button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+</table>
+
+
+
+
 {% else %}
-<p>No searches are available.</p>
+<p>No Syfts found. Try creating a Syft</p>
 {% endif %}
 
-{% if searches|length < 3 %} <p><a href="create">Create Search</a></p>
+{% if syfts|length < 3 %} <p><a href="create">Create Syft</a></p>
     {% else %}
-    <p>You've reached the limit of searches for now</p>
+    <p>You've reached the limit of Syfts for now.</p>
     {% endif %}
 
     {% endblock %}

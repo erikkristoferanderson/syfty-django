@@ -9,29 +9,40 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
     <!-- Add additional CSS in static file -->
     <!-- {% load static %} -->
+    <!-- <link href="https://unpkg.com/blueprint-css@3.1.3/dist/blueprint.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2">
-                {% block sidebar %}
-                <ul class="sidebar-nav">
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    {% if user.is_authenticated %}
-                    <li>User: {{ user.get_username }}</li>
-                    <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
-                    {% else %}
-                    <!-- <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li> -->
-                    <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-                    {% endif %}
-                </ul>
-                {% endblock %}
-            </div>
-            <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
-        </div>
+
+    <nav>
+        {% block sidebar %}
+        <ul class="sidebar-nav">
+            <li id="Home"><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_authenticated %}
+            <li id="hello-username">Hello, {{ user.get_username }}</li>
+            <li id="logout"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+
+            {% else %}
+            <li id="login"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+            <li id="signup"><a href="{% url 'signup' %}?next={{ request.path }}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+        {% endblock %}
+    </nav>
+    <div class="main-block-content">
+        {% block content %}
+        {% endblock %}
     </div>
+    <footer>
+        <ul>
+            <li><a href="Terms of use">Terms of use</a></li>
+            <li><a href="Privacy policy">Privacy policy</a></li>
+            <li>Copyright 2023 Syfty</li>
+            <li>See the code on <a href="https://github.com/ekand/syfty">GitHub</a></li>
+        </ul>
+    </footer>
+
 </body>
 
 </html>

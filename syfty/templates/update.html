@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{% url 'update' search.id %}" method="post">
+<form action="{% url 'update' syft.id %}" method="post">
     {% csrf_token %}
     <fieldset>
         <legend>
@@ -10,9 +10,9 @@
         </legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
         <label for="subreddit">Subreddit: </label>
-        <input id="subreddit" type="text" name="subreddit" value="{{ search.subreddit }}">
+        <input id="subreddit" type="text" name="subreddit" value="{{ syft.subreddit }}">
         <label for="search_term">Search Term: </label>
-        <input id="search_term" type="text" name="search_term" value="{{ search.search_term }}">
+        <input id="search_term" type="text" name="search_term" value="{{ syft.search_term }}">
         <input type="submit" value="OK">
     </fieldset>
     <p><a href="{% url 'index' %}">Back to Searches list</a></p>
