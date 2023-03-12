@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Subreddit</th>
+            <th>Search Term</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>{{ syft.subreddit }}</td>
+            <td>{{ syft.search_term }}</td>
+            <td><a href="{% url 'update' syft.pk %}"><img src="{% static 'assets/ic-baseline-edit-note.svg' %}"></a>
+            </td>
+            <td>
+                <form action='delete' method='post'>
+                    {% csrf_token %}
+                    <button type='submit' name='delete' value='Delete'>Delete</button>
+                </form>
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+<p><a class="back-to-syfts-list" href="{% url 'dashboard' %}">Back to Syfts list</a></p>
+
+
+
+{% endblock %}

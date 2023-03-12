@@ -3,3 +3,6 @@ db.sqlite3
 email_env.py
 stripe_env.py
 info.log
+venv/
+__pycache__/
+.env/

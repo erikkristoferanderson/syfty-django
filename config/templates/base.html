@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block title %}<title>Syfty</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="Page">
+        <nav class="Navigation">
+            {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}"><span class="Syfty">
+                    Syfty
+                </span></a>
+            {% else %}
+            <a href="{% url 'landing_page' %}"><span class="Syfty">
+                    Syfty
+                </span></a>
+            {% endif %}
+            <!-- 
+            <a href="{% url 'dashboard' %}"><span class="Syfty">
+                    Syfty
+                </span>
+            </a> -->
+            <div class="Frame-2">
+                <a href="{% url 'plans' %}"><span class="Plans">
+                        Plans
+                    </span></a>
+                <a href="{% url 'about' %}"><span class="About-Syfty">
+                        About Syfty
+                    </span></a>
+                <span class="Account">
+                    <a href="{% url 'profile' %}">Account</a>
+                </span>
+            </div>
+        </nav>
+
+        <div class="space-me">
+            <div class="main-block-content">
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <footer>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}"><span class="Syfty-2">
+                    Syfty
+                </span></a>
+            {% else %}
+            <a href="{% url 'landing_page' %}"><span class="Syfty-2">
+                    Syfty
+                </span></a>
+            {% endif %}
+
+            <div class="Frame-23">
+                <a href="{% url 'terms_of_use' %}"><span class="Terms-of-Use">
+                        Terms of Use
+                    </span></a>
+                <a href="{% url 'privacy_policy' %}"><span class="Privacy-Policy">
+                        Privacy Policy
+                    </span></a>
+                <span class="-Syfty">
+                    ©2023 Syfty
+                </span>
+            </div>
+            <div class="Socials">
+                <div class="Social-Vector"><a href="https://github.com/ekand/syfty"><img
+                            src="{% static 'assets/github.png' %}" width="100%" height="100%"></a></div>
+                <div class="Social-Vector"><a
+                        href="https://www.youtube.com/watch?v=rsJDW1nUl2s&list=PLK3zM7Pklmc1aX0NooO1xEo15p-4VLMY7"><img
+                            src="{% static 'assets/black-and-white-youtube-icon.png' %}" width="100%" height="100%"></a>
+                </div>
+                <div class="Social-Vector"><a href="https://twitter.com/hellosyfty"><img
+                            src="{% static 'assets/twitter-512.webp' %}" width="100%" height="100%"></a></div>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

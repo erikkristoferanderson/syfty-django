@@ -2,10 +2,12 @@
 
 Running locally.
 
-(From directory mysyte)
+activate virtual environment
+
+(From directory config)
 
 ```sh
-export DEVELOPMENT_MODE=True
-export DEBUG=True
+export DEVELOPMENT_MODE=YesPlease
+export DEBUG=YesPlease
 python manage.py runserver
 ```
