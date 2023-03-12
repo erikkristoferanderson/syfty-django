@@ -50,7 +50,6 @@ INSTALLED_APPS = [
 
     'accounts',
     'syfts',
-    'scheduler',
 ]
 
 MIDDLEWARE = [
