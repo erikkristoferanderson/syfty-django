@@ -50,10 +50,12 @@ INSTALLED_APPS = [
 
     'accounts',
     'syfts',
+    'scheduler',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,7 +127,6 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
-
 
 AUTHENTICATION_BACKENDS = (
     'accounts.auth_backend.PasswordlessAuthBackend',
@@ -202,3 +203,5 @@ else:
 
     # Set the server email address (used for error messages sent to site administrators)
     SERVER_EMAIL = 'hello+errors@syfty.net'
+
+CELERY_IMPORTS = ('scheduler.tasks',)
