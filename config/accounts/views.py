@@ -23,7 +23,7 @@ def login_view(request):
         try:
             user = CustomUser.objects.get(email=email)
         except CustomUser.DoesNotExist:
-            return redirect('error')
+            user = CustomUser()
         user.send_magic_link()
         print('A magic link has been sent to your email address')
         return redirect('login_requested')
