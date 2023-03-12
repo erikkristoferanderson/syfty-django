@@ -27,7 +27,7 @@ def login_view(request):
             user.is_active = False
             user.set_unusable_password()
         user.send_magic_link()
-        print('A magic link has been sent to your email address')
+        # print('A magic link has been sent to your email address')
         return redirect('login_requested')
     else:
         return render(request, 'login.html')
@@ -35,7 +35,7 @@ def login_view(request):
 
 def magic_link_view(request):
     token = request.GET.get('magic_token')
-    print(token)
+    # print(token)
     try:
         user = CustomUser.objects.get(
             magic_token=token)
@@ -52,15 +52,15 @@ def magic_link_view(request):
 
 def validate_magic_link(request):
     token = request.GET.get('magic_token')
-    print('token', token)
+    # print('token', token)
 
     try:
         user = CustomUser.objects.get(magic_token=token)
     except CustomUser.DoesNotExist:
-        print('The magic link is invalid or has expired.')
+        # print('The magic link is invalid or has expired.')
         return redirect('login')
     else:
-        print('user.email', user.email, 'hello 98567289347')
+        # print('user.email', user.email, 'hello 98567289347')
         user.magic_token = None
         user.magic_token_expires_at = None
         user.is_active = True
@@ -68,9 +68,9 @@ def validate_magic_link(request):
         # Authenticate and log the user in
         auth_user = PasswordlessAuthBackend().authenticate(
             email=user.email)
-        print(auth_user)
+        # print(auth_user)
         login(request, auth_user)
-        print('You have been logged in successfully.')
+        # print('You have been logged in successfully.')
         return redirect('profile/')
 
 
@@ -100,9 +100,9 @@ def delete_account(request):
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        print('hello, form')
+        # print('hello, form')
         if form.is_valid():
-            print('form is valid')
+            # print('form is valid')
             user = form.save(commit=False)
             user.username = user.email
             user.is_active = False
@@ -111,10 +111,11 @@ def signup(request):
             # user.save()
             return render(request, 'signup_success.html', )
         else:
-            print('form is invalid')
-            print(form.errors)
+            # print('form is invalid')
+            # print(form.errors)
+            pass
     else:
-        print('hello else')
+        # print('hello else')
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
 

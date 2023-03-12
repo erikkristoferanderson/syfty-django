@@ -64,7 +64,7 @@ class CustomUser(AbstractUser):
 
     def send_magic_link(user):
         token = secrets.token_urlsafe(32)
-        print('token', token)
+        # print('token', token)
         user.magic_token = token
         user.save()
 

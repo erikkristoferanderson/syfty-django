@@ -213,6 +213,7 @@ body {
 	width: 35px;
 	height: 35px;
 	flex-grow: 0;
+	justify-content: center;
 	background-color: #fff;
   }
 
@@ -278,7 +279,7 @@ body {
 	max-width: 900px;
 }
 
-a.back-to-syfts-list {
+a.back-to-syfts-list, a.to-the-dashboard {
 	color: blue;
 }
 
@@ -287,4 +288,21 @@ div.space-me {
 	padding: 5%;
 	width: 100%;
 	flex-grow: 1;
+}
+
+div.main-block-content h2 {
+	text-align: center;
+}
+
+div.landing-page-hello {
+	padding: 5%;
+}
+
+div.landing-page-feature {
+	background-color: white;
+	padding: 5%;
+}
+
+div.danger-zone h2 {
+	text-align: left;
 }

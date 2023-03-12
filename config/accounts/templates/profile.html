@@ -4,6 +4,7 @@
 
 <h1>Welcome!</h1>
 <p>Your email address is {{ user.email }}.</p>
+<p>How about heading over to the <a class="to-the-dashboard" href="{% url 'dashboard' %}">dashboard</a>?</p>
 
 <div class="logout-link">
     <form method="post" action="{% url 'logout' %}">

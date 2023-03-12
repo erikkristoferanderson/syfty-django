@@ -4,7 +4,10 @@ from .models import Syft
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-import datetime
+
+
+def error_view(request):
+    return render(request, 'error.html')
 
 
 @login_required
@@ -29,10 +32,6 @@ def syft_detail_view(request, syft_id):
     return render(request, 'syft_detail.html', {'syft': syft})
 
 
-def error_view(request):
-    return render(request, 'error.html')
-
-
 @login_required
 def create(request):
     if request.method == 'POST':
@@ -52,7 +51,7 @@ def update(request, syft_id):
         syft.subreddit = request.POST['subreddit']
         syft.search_term = request.POST['search_term']
         syft.save()
-        return HttpResponseRedirect(reverse('detail', args=(syft.id,)))
+        return HttpResponseRedirect(reverse('syft', args=(syft.id,)))
     else:
         try:
             syft = Syft.objects.filter(
