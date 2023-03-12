@@ -1,9 +1,10 @@
 from django.shortcuts import render
-
+import logging
 # Create your views here.
 
 
 def landing_page_view(request):
+    logging.info('hello loggin')
     return render(request, 'landing_page.html')
 
 
