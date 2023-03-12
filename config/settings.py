@@ -185,7 +185,7 @@ LOGIN_URL = '/accounts/login'
 
 if DEVELOPMENT_MODE is True:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    EMAIL_FROM = 'hello@syfty.net'
+    EMAIL_FROM = 'Hello from Syfty <hello@syfty.net>'
 
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -196,6 +196,7 @@ else:
     EMAIL_USE_TLS = True
     EMAIL_USE_SSL = False
     # Set the default from email address
+    EMAIL_FROM = 'Hello from Syfty <hello@syfty.net>'
     DEFAULT_FROM_EMAIL = 'Hello from Syfty <hello@syfty.net>'
 
     # Set the server email address (used for error messages sent to site administrators)
