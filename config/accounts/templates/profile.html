@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <h1>Welcome!</h1>
 <p>Your email address is {{ user.email }}.</p>
 
@@ -15,3 +19,5 @@
         <button type="submit">Delete My Account</button>
     </form>
 </div>
+
+{% endblock %}

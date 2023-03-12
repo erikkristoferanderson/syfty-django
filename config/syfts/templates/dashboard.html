@@ -5,25 +5,32 @@
 <table>
     <thead>
         <tr>
-            <th>Title</th>
+            <th>Subreddit</th>
             <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
+            <th>Detail</th>
         </tr>
     </thead>
     <tbody>
         {% for syft in syfts %}
+
         <tr>
-            <td>{{ syft.title }}</td>
-            <td>{{ syft.description }}</td>
-            <td>{{ syft.start_date }}</td>
-            <td>{{ syft.end_date }}</td>
+            <td>r / {{ syft.subreddit }}</td>
+            <td>"{{ syft.search_term }}"</td>
+            <td><a href="{% url 'syft' syft.id %}">Detail</a></td>
+            </a>
         </tr>
+
         {% empty %}
         <tr>
-            <td colspan="4">You have no Syfts.</td>
+            <td colspan="3">You have no Syfts. Try creating a Syft</td>
         </tr>
         {% endfor %}
     </tbody>
+
 </table>
-{% endblock %}
+
+{% if syfts|length < 3 %} <p><a href="{% url 'create' %}">Create Syft</a></p>
+    {% else %}
+    <p>You've reached the limit of Syfts for now.</p>
+    {% endif %}
+    {% endblock %}

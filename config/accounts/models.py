@@ -8,24 +8,35 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 import secrets
+from django.contrib.auth.models import BaseUserManager
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, commit=True):
-        user = self.model(email=email)
-        if commit:
-            user.save()
+
+    def create_user(self, email, password=None):
+
+        if email is None:
+            raise TypeError('Users must have an email address.')
+
+        user = self.model(email=self.normalize_email(email))
+        user.username = email
+        user.set_password(password)
+        user.save()
+
         return user
 
-    def create_superuser(self, email=None, username=None, password=None):
+    def create_superuser(self, email=None, password=None, username=None):
         if username:
             email = username
-        user = self.create_user(email=email, commit=False)
-        user.is_staff = True
+
+        if password is None:
+            raise TypeError('Superusers must have a password.')
+
+        user = self.create_user(email, password)
         user.is_superuser = True
-        if password:
-            user.set_password(password)
+        user.is_staff = True
         user.save()
+
         return user
 
 
