@@ -178,7 +178,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-BASE_URL = 'http://localhost:8000'
 
 LOGIN_URL = '/accounts/login'
 
@@ -186,8 +185,10 @@ LOGIN_URL = '/accounts/login'
 if DEVELOPMENT_MODE is True:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     EMAIL_FROM = 'Hello from Syfty <hello@syfty.net>'
+    BASE_URL = 'http://localhost:8000'
 
 else:
+    BASE_URL = 'https://syfty.net'  # hard coded for now
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.zeptomail.com'
     EMAIL_PORT = '587'
