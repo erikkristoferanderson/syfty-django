@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>My Syfts</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for syft in syfts %}
+        <tr>
+            <td>{{ syft.title }}</td>
+            <td>{{ syft.description }}</td>
+            <td>{{ syft.start_date }}</td>
+            <td>{{ syft.end_date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">You have no Syfts.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

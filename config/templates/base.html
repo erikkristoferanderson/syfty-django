@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block title %}<title>Syfty</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="Homepage">
+        <div class="Navigation">
+            <a href="{% url 'dashboard' %}"><span class="Syfty">
+                    Syfty
+                </span>
+            </a>
+            <div class="Frame-2">
+                <span class="Plans">
+                    Plans
+                </span>
+                <span class="About-Syfty">
+                    About Syfty
+                </span>
+                <span class="Account">
+                    Account
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <header>
+        <nav>
+            <div class="nav-div">
+                {% block sidebar %}
+
+                <div id="home"></div>
+                {% if user.is_authenticated %}
+                <div id="hello-username">Hello, {{ user.get_username }}</div>
+                <div id="logout"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></div>
+
+                {% else %}
+                <div id="login"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></div>
+                <div id="signup"><a href="{% url 'signup' %}?next={{ request.path }}">Sign Up</a></div>
+                {% endif %}
+            </div>
+            {% endblock %}
+        </nav>
+    </header> -->
+    <div class="main-block-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <span class="Syfty-2">
+            Syfty
+        </span>
+
+        <div class="Frame-23">
+            <span class="Terms-of-Use">
+                Terms of Use
+            </span>
+            <span class="Privacy-Policy">
+                Privacy Policy
+            </span>
+            <span class="-Syfty">
+                ©2023 Syfty
+            </span>
+        </div>
+        <div class="Socials">
+            <div class="Social-Vector">gh</div>
+            <div class="Social-Vector">yt</div>
+            <div class="Social-Vector">tw</div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
