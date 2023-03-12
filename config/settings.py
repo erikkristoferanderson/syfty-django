@@ -85,6 +85,30 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+# Logging
+LOGGING = {
+    'version': 1,
+    # The version number of our log
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'info.log',
+        },
+    },
+    # A logger for WARNING which has a handler called 'file'. A logger can have multiple handler
+    'loggers': {
+        # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
+        '': {
+            # notice how file variable is called in handler which has been defined above
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 

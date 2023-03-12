@@ -12,20 +12,31 @@ from .auth_backend import PasswordlessAuthBackend
 from django.shortcuts import render, redirect
 from .models import CustomUser
 
+import logging
+
 
 def error_view(request):
     return render(request, 'error.html')
 
 
 def login_view(request):
+    logger = logging.getLogger()
     if request.method == 'POST':
         email = request.POST['email']
+        logger.info(f"login attempt from email: {email}")
         try:
+            logger.info(f"looking for user with email: {email}")
             user = CustomUser.objects.get(email=email)
+            logger.info(f"found user with email: {email}")
         except CustomUser.DoesNotExist:
-            user = CustomUser(email=email, username=email)
-            user.is_active = False
-            user.set_unusable_password()
+            try:
+                logger.info(f"did not find user. trying to create user")
+                user = CustomUser(email=email, username=email)
+                user.is_active = False
+                user.set_unusable_password()
+            except Exception as unknown_e:
+                logger.error(unknown_e)
+                raise unknown_e
         user.send_magic_link()
         # print('A magic link has been sent to your email address')
         return redirect('login_requested')
