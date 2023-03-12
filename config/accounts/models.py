@@ -20,7 +20,8 @@ class CustomUserManager(BaseUserManager):
 
         user = self.model(email=self.normalize_email(email))
         user.username = email
-        user.set_password(password)
+        if password is None:
+            user.set_unusable_password()
         user.save()
 
         return user

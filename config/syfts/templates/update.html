@@ -6,7 +6,7 @@
     {% csrf_token %}
     <fieldset>
         <legend>
-            <h2>Edit</h2>
+            <h2>Edit Syft</h2>
         </legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
         <label for="subreddit">Subreddit: </label>
@@ -15,6 +15,6 @@
         <input id="search_term" type="text" name="search_term" value="{{ syft.search_term }}">
         <input type="submit" value="OK">
     </fieldset>
-    <p><a href="{% url 'dashboard' %}">Back to Syfts list</a></p>
+    <p><a class="back-to-syfts-list" href="{% url 'dashboard' %}">Back to Syfts list</a></p>
 
     {% endblock %}

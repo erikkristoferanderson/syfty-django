@@ -23,7 +23,9 @@ def login_view(request):
         try:
             user = CustomUser.objects.get(email=email)
         except CustomUser.DoesNotExist:
-            user = CustomUser()
+            user = CustomUser(email=email, username=email)
+            user.is_active = False
+            user.set_unusable_password()
         user.send_magic_link()
         print('A magic link has been sent to your email address')
         return redirect('login_requested')
@@ -90,7 +92,7 @@ def delete_account(request):
         user.delete()
         logout(request)
         # replace 'home' with the name of your homepage URL pattern
-        return redirect('')
+        return redirect('/')
     else:
         return render(request, 'delete_account.html')
 

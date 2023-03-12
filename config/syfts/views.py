@@ -4,6 +4,7 @@ from .models import Syft
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+import datetime
 
 
 @login_required
@@ -11,8 +12,11 @@ def dashboard_view(request):
     current_user = request.user
     syfts = Syft.objects.filter(
         owner=current_user).all()
+    for syft in syfts:
+        syft.date_created_date_only = syft.date_created.date()
+
     context = {'user': request.user,
-               'syfts': syfts}
+               'syfts': syfts, }
     return render(request, 'dashboard.html', context)
 
 

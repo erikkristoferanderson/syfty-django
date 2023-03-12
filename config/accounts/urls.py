@@ -12,7 +12,7 @@ from .views import error_view
 urlpatterns = [
     path('login/', login_view, name='login'),
     path('profile/', profile, name='profile'),
-    path('signup/', signup, name='signup'),
+    # path('signup/', signup, name='signup'),
     path('logout/', logout_view, name='logout'),
     path('delete-account/', delete_account, name='delete_account'),
     path('login_requested/', login_requested_view, name='login_requested'),

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 <table>
@@ -7,8 +7,8 @@
         <tr>
             <th>Subreddit</th>
             <th>Search Term</th>
-            <th></th>
-            <th></th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -16,7 +16,8 @@
         <tr>
             <td>{{ syft.subreddit }}</td>
             <td>{{ syft.search_term }}</td>
-            <td><a href="{% url 'update' syft.pk %}">Edit</a></td>
+            <td><a href="{% url 'update' syft.pk %}"><img src="{% static 'assets/ic-baseline-edit-note.svg' %}"></a>
+            </td>
             <td>
                 <form action='delete' method='post'>
                     {% csrf_token %}
@@ -28,7 +29,7 @@
 
     </tbody>
 </table>
-<p><a href="{% url 'dashboard' %}">Back to Syfts list</a></p>
+<p><a class="back-to-syfts-list" href="{% url 'dashboard' %}">Back to Syfts list</a></p>
 
 
 

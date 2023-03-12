@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <h1>My Syfts</h1>
 <table>
@@ -7,7 +7,10 @@
         <tr>
             <th>Subreddit</th>
             <th>Description</th>
+            <th>Date Created</th>
+            <!-- <th>Notifications Sent</th> -->
             <th>Detail</th>
+
         </tr>
     </thead>
     <tbody>
@@ -16,20 +19,22 @@
         <tr>
             <td>r / {{ syft.subreddit }}</td>
             <td>"{{ syft.search_term }}"</td>
-            <td><a href="{% url 'syft' syft.id %}">Detail</a></td>
+            <td>{{ syft.date_created_date_only }}</td>
+            <!-- <td>{{ syft.notifications_sent }}</td> -->
+            <td><a href="{% url 'syft' syft.id %}"><img src="{% static 'assets/ic-baseline-edit-note.svg' %}"></a></td>
             </a>
         </tr>
 
         {% empty %}
         <tr>
-            <td colspan="3">You have no Syfts. Try creating a Syft</td>
+            <td colspan="4">You have no Syfts. Try creating a Syft</td>
         </tr>
         {% endfor %}
     </tbody>
 
 </table>
 
-{% if syfts|length < 3 %} <p><a href="{% url 'create' %}">Create Syft</a></p>
+{% if syfts|length < 3 %} <p><a class="create-syft" href="{% url 'create' %}">Create Syft</a></p>
     {% else %}
     <p>You've reached the limit of Syfts for now.</p>
     {% endif %}
