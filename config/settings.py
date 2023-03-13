@@ -198,7 +198,8 @@ if DEVELOPMENT_MODE is True:
     BASE_URL = 'http://localhost:8000'
 
 else:
-    BASE_URL = 'https://syfty.net'  # hard coded for now
+    # 'https://syfty.net'  # hard coded for now
+    BASE_URL = os.environ.get("BASE_URL")
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.zeptomail.com'
     EMAIL_PORT = '587'
@@ -212,5 +213,3 @@ else:
 
     # Set the server email address (used for error messages sent to site administrators)
     SERVER_EMAIL = 'hello+errors@syfty.net'
-
-CELERY_IMPORTS = ('scheduler.tasks',)
