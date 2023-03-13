@@ -4,7 +4,8 @@ import logging
 
 
 def landing_page_view(request):
-    logging.info('hello loggin')
+    logger = logging.getLogger('testlogger')
+    logger.info('hello this is a simple log message')
     return render(request, 'landing_page.html')
 
 
