@@ -37,6 +37,9 @@ def login_view(request):
             except Exception as unknown_e:
                 logger.error(unknown_e)
                 raise unknown_e
+        except Exception as unknown_e:
+            logger.error(unknown_e)
+            raise unknown_e
         user.send_magic_link()
         # print('A magic link has been sent to your email address')
         return redirect('login_requested')
