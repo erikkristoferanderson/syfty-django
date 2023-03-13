@@ -77,18 +77,22 @@ def validate_magic_link(request):
         # print('The magic link is invalid or has expired.')
         return redirect('login')
     else:
-        # print('user.email', user.email, 'hello 98567289347')
-        user.magic_token = None
-        user.magic_token_expires_at = None
-        user.is_active = True
-        user.save()
-        # Authenticate and log the user in
-        auth_user = PasswordlessAuthBackend().authenticate(
-            email=user.email)
-        # print(auth_user)
-        login(request, auth_user)
-        # print('You have been logged in successfully.')
-        return redirect('profile/')
+        try:
+            # print('user.email', user.email, 'hello 98567289347')
+            user.magic_token = None
+            user.magic_token_expires_at = None
+            user.is_active = True
+            user.save()
+            # Authenticate and log the user in
+            auth_user = PasswordlessAuthBackend().authenticate(
+                email=user.email)
+            # print(auth_user)
+            login(request, auth_user)
+            # print('You have been logged in successfully.')
+            return redirect('profile/')
+        except Exception as e:
+            logger.error('e:', e)
+            raise e
 
 
 def registration():
