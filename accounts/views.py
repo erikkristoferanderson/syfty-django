@@ -65,12 +65,15 @@ def magic_link_view(request):
 
 
 def validate_magic_link(request):
+    logger = logging.getLogger('testlogger')
+
     token = request.GET.get('magic_token')
     # print('token', token)
-
+    logger.info('user attempted to use a magic token')
     try:
         user = CustomUser.objects.get(magic_token=token)
     except CustomUser.DoesNotExist:
+        logger.info('CustomUser does not exist')
         # print('The magic link is invalid or has expired.')
         return redirect('login')
     else:
