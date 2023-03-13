@@ -20,7 +20,7 @@ def error_view(request):
 
 
 def login_view(request):
-    logger = logging.getLogger()
+    logger = logging.getLogger('testlogger')
     if request.method == 'POST':
         email = request.POST['email']
         logger.info(f"login attempt from email: {email}")
