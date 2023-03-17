@@ -7,7 +7,7 @@ from .views import delete_account
 from .views import logout_view
 from .views import login_requested_view
 from .views import error_view
-
+from .views import login_failure_view
 
 urlpatterns = [
     path('login/', login_view, name='login'),
@@ -18,5 +18,6 @@ urlpatterns = [
     path('login_requested/', login_requested_view, name='login_requested'),
     path('validate-magic-link', validate_magic_link, name="validate_magic_link"),
     path('error', error_view, name='error'),
+    path('login_failure', login_failure_view, name='login_failure'),
     # ...other URL patterns...
 ]

@@ -23,11 +23,11 @@ def login_view(request):
     logger = logging.getLogger('testlogger')
     if request.method == 'POST':
         email = request.POST['email']
-        logger.info(f"login attempt from email: {email}")
+        logger.info(f"user requested login")
         try:
-            logger.info(f"looking for user with email: {email}")
+            logger.info(f"lookging for user")
             user = CustomUser.objects.get(email=email)
-            logger.info(f"found user with email: {email}")
+            logger.info(f"found user")
         except CustomUser.DoesNotExist:
             try:
                 logger.info(f"did not find user. trying to create user")
@@ -76,6 +76,8 @@ def validate_magic_link(request):
     logger.info('user attempted to use a magic token')
     try:
         user = CustomUser.objects.get(magic_token=token)
+        if not user.is_magic_link_valid():
+            return redirect('login_failure')
     except CustomUser.DoesNotExist:
         logger.info('CustomUser does not exist')
         # print('The magic link is invalid or has expired.')
@@ -154,3 +156,7 @@ def logout_view(request):
 
 def login_requested_view(request):
     return render(request, 'login_requested.html')
+
+
+def login_failure_view(request):
+    return render(request, 'login_failure.html')

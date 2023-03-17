@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils import timezone
-
+from datetime import timedelta
 
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -66,6 +66,7 @@ class CustomUser(AbstractUser):
         token = secrets.token_urlsafe(32)
         # print('token', token)
         user.magic_token = token
+        user.magic_token_expires_at = timezone.now() + timedelta(hours=1)
         user.save()
 
         subject = 'Your magic login link'
